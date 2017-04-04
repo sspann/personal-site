@@ -1,109 +1,143 @@
 # `personal-site`
 
-My personal website built with Aurelia. The purpose of the site is consolidate all of my personal information, social media accounts, résumé, etc.
+My `personal-site` built with Aurelia. The purpose of the site is consolidate all of my personal information, social media accounts, résumé, etc.
 
-## Running The App
+## Getting started
 
-To run the app, follow these steps.
+Before you start, make sure you have a recent version of [NodeJS](http://nodejs.org/) environment *>=4.0* with NPM 3.
 
-1. Ensure that [NodeJS](http://nodejs.org/) is installed. This provides the platform on which the build tooling runs.
-2. From the project folder, execute the following command:
+From the project folder, execute the following commands:
 
-  ```shell
-  npm install
-  ```
-3. Ensure that [Gulp](http://gulpjs.com/) is installed globally. If you need to install it, use the following command:
+```shell
+npm install
+```
 
-  ```shell
-  npm install -g gulp
-  ```
-  > **Note:** Gulp must be installed globally, but a local version will also be installed to ensure a compatible version is used for the project.
-4. Ensure that [jspm](http://jspm.io/) is installed globally. If you need to install it, use the following command:
+This will install all required dependencies, including a local version of Webpack that is going to
+build and bundle the app. There is no need to install Webpack globally. 
 
-  ```shell
-  npm install -g jspm
-  ```
-  > **Note:** jspm must be installed globally, but a local version will also be installed to ensure a compatible version is used for the project.
+To run the app execute the following command:
 
-  > **Note:** jspm queries GitHub to install semver packages, but GitHub has a rate limit on anonymous API requests. It is advised that you configure jspm with your GitHub credentials in order to avoid problems. You can do this by executing `jspm registry config github` and following the prompts. If you choose to authorize jspm by an access token instead of giving your password (see GitHub `Settings > Personal Access Tokens`), `public_repo` access for the token is required.
-5. Install the client-side dependencies with jspm:
+```shell
+npm start
+```
 
-  ```shell
-  jspm install -y
-  ```
-  >**Note:** Windows users, if you experience an error of "unknown command unzip" you can solve this problem by doing `npm install -g unzip` and then re-running `jspm install`.
-6. To run the app, execute the following command:
+This command starts the webpack development server that serves the build bundles.
+You can now browse the skeleton app at http://localhost:9000. Changes in the code
+will automatically build and reload the app.
 
-  ```shell
-  gulp watch
-  ```
-7. Browse to [http://localhost:9000](http://localhost:9000) to see the app. You can make changes in the code found under `src` and the browser should auto-refresh itself as you save files.
+## Feature configuration
 
-> The Skeleton App uses [BrowserSync](http://www.browsersync.io/) for automated page refreshes on code/markup changes concurrently across multiple browsers. If you prefer to disable the mirroring feature set the [ghostMode option](http://www.browsersync.io/docs/options/#option-ghostMode) to false
+Most of the configuration will happen in the `webpack.config.js` file.
+There, you may configure advanced loader features or add direct SASS or LESS loading support.
 
 ## Bundling
-Bundling is performed by [Aurelia Bundler](http://github.com/aurelia/bundler). A gulp task is already configured for that. Use the following command to bundle the app:
 
-  ```shell
-    gulp bundle
-  ```
+To build a development bundle (output to /dist) execute:
 
-You can also unbundle using the command bellow:
+```shell
+npm run build
+```
 
-  ```shell
-    gulp unbundle
-  ```
+To build an optimized, minified production bundle (output to /dist) execute:
 
-To start the bundled app, execute the following command:
+```shell
+npm run build:prod
+```
 
-  ```shell
-    gulp serve-bundle
-  ```
-#### Configuration
-The configuration is done by ```bundles.js``` file.
-##### Optional
-Under ```options``` of ```dist/aurelia``` add ```rev: true``` to add bundle file revision/version.
+To test either the development or production build execute:
+
+```shell
+npm run server:prod
+```
+
+The production bundle includes all files that are required for deployment.
+
+## Resource and bundling configuration
+
+You may want to separate out parts of your code to other files.
+This can be done by specifying a build resource object inside `package.json`. 
+
+For example, if you wanted to lazy-load the /users path of the skeleton you could define it as follows:
+
+```js
+// (package.json)
+"aurelia": {
+  "build": {
+    "resources": [
+      {
+        "path": "users",
+        "bundle": "users",
+        "lazy": true
+      }
+    ]
+  }
+},
+```
+
+The "path" field can be either a string or an array of strings. 
+The string should be a path, relative to the src or in case of an external resource, as a require path (e.g. `aurelia-plugin/some-resource.html`).
+`.js`, `.ts` and `.html` extensions are optional and will be resolved automatically.
+The bundle setting is recursive, therefore any files required by the specified path will also be contained by the bundle, unless they are also contained by another one (iteration is done from first to last resource).
+
+Resources must also be specified in case Aurelia is supposed to load an external file or an external module that was not defined as a resource by any of the dependencies.
+Since the syntax is still relatively new, most Aurelia plugins don't define their resources. 
+There might also be reasons not to declare those resources, in case the plugin is to be consumed only partially.
+If you'd like to use external resources, you should declare them yourself, like so:
+
+```js
+// (package.json)
+"aurelia": {
+  "build": {
+    "resources": [
+      "aurelia-some-ui-plugin/dropdown",
+      "aurelia-some-ui-plugin/checkbox"
+    ]
+  }
+},
+```
+
+You can also combine both features to separate out plugins or resources for lazy-loading:
+
+```js
+// (package.json)
+"aurelia": {
+  "build": {
+    "resources": [
+      {
+        "path": "aurelia-animator-css",
+        "bundle": "animator",
+        "lazy": true
+      },
+      {
+        "path": [
+          // lets say we only use the checkbox from within subpage1
+          // we want those to be bundled together in a bundle called: "subpage1"
+          "aurelia-some-ui-plugin/checkbox",
+          "./items/subpage1"
+        ],
+        "bundle": "subpage1",
+        "lazy": true
+      },
+      "aurelia-some-ui-plugin/dropdown"
+    ]
+  }
+},
+```
+
+Please see https://github.com/aurelia/webpack-plugin for more information.
 
 ## Running The Unit Tests
 
-To run the unit tests, first ensure that you have followed the steps above in order to install all dependencies and successfully build the library. Once you have done that, proceed with these additional steps:
+To run the unit tests:
 
-1. Ensure that the [Karma](http://karma-runner.github.io/) CLI is installed. If you need to install it, use the following command:
+```shell
+npm test
+```
 
-  ```shell
-  npm install -g karma-cli
-  ```
-2. Install Aurelia libs for test visibility:
+## Acknowledgments
 
-  ```shell
-  jspm install aurelia-framework
-  jspm install aurelia-http-client
-  jspm install aurelia-router
-  ```
-3. You can now run the tests with this command:
+Parts of code responsible for Webpack configuration were inspired by or copied from @AngularClass' [angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter).
 
-  ```shell
-  karma start
-  ```
-
-## Exporting bundled production version
-A gulp task is already configured for that. Use the following command to export the app:
-
-  ```shell
-    gulp export
-  ```
-The app will be exported into ```export``` directory preserving the directory structure.
-
-To start the exported app, execute the following command:
-
-  ```shell
-    gulp serve-export
-  ```
-
-#### Configuration
-The configuration is done by ```bundles.js``` file.
-In addition, ```export.js``` file is available for including individual files.
-
-# Contributors
+## Contributors
 
 * Steven Spann <sspann21@gmail.com> - Software Developer

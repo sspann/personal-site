@@ -1,7 +1,7 @@
 {
-  "name": "personal-site",
-  "version": "0.1.0",
-  "description": "My personal website built with Aurelia. The purpose of the site is consolidate all of my personal information, social media accounts, résumé, etc.",
+  "name": "aurelia-skeleton-navigation-webpack",
+  "version": "1.1.2",
+  "description": "A starter kit for building a standard navigation-style app with Aurelia and webpack.",
   "main": "dist/main.js",
   "scripts": {
     "pretest": "del-cli \"test/coverage\"",
