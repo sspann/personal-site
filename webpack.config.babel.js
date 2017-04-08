@@ -108,7 +108,7 @@ let config = generateConfig(
 
   ...(ENV === 'production' || ENV === 'development' ? [
     commonChunksOptimize({appChunkName: 'app', firstChunk: 'aurelia-bootstrap'}),
-    copyFiles({patterns: [{ from: 'favicon.ico', to: 'favicon.ico' }, { from: 'background.jpg', to: 'background.jpg' }]})
+    copyFiles({patterns: [{ from: 'background.jpg', to: 'background.jpg' }, { from: 'card-background.jpg', to: 'card-background.jpg' }]})
   ] : [
     /* ENV === 'test' */
     generateCoverage({ options: { 'force-sourcemap': true, esModules: true }})

@@ -38,7 +38,7 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  top: 50px;
+  top: 25px;
   bottom: 0;
   overflow-x: hidden;
   overflow-y: auto;
@@ -89,62 +89,84 @@ div.au-stagger {
   animation: fadeIn 2s;
 }
 
-.profile-card {
-  padding: 15px;
+.social {
+  padding: 0;
+  list-style: none;
+  text-align: center;
 }
 
-.panel.panel-default {
-  color: #ECF0F1 !important;
-  background-color: #333333 !important;
+.social li {
+  display: inline-block;
+  padding: 0;
+  margin-bottom: -3px;
+}
+
+.social li a {
+  display: block;
+  float: left;
+  margin: 0 .1em .2em 0;
+  line-height: 100%;
+  text-align: center;
+  font-size: 21px;
+  padding: 9px 8px 7px 8px;
+  color: #ECF0F1;
 }
 
 .card {
+  background-color: #333333 !important;
+  border-top-width: 0;
+  border-bottom-width: 2px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.media {
+  position: relative;
+  padding-top: 0;
   overflow: hidden;
-  position: relative;
-  border: 1px solid #CCC;
-  border-radius: 8px;
   text-align: center;
-  padding: 0;
-  background-color: #337ab7;
-  color: rgb(136, 172, 217);
-  margin-bottom: 32px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+  background-color: rgba(214, 224, 226, 0.2);
 }
 
-.card .content {
-  margin-top: 10px;
+.media .cardheader {
+  background: url(../card-background.jpg);
+  background-size: cover;
+  height: 135px;
 }
 
-.card .content .name {
-  color: white;
-  text-shadow: 0 0 6px rgba(0, 0, 0, .5);
-  font-size: 18px;
+.card.hovercard .info .desc {
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 50px !important;
+  text-overflow: ellipsis;
+  color: #ECF0F1 !important;
 }
 
-.card .header-bg {
-  /* This stretches the canvas across the entire hero unit */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  border-bottom: 1px #FFF solid;
-  border-radius: 6px 6px 0 0;
+a {
+  color: #ECF0F1 !important;
 }
 
-.card .avatar {
+.media .avatar {
   position: relative;
-  margin-top: 15px;
-  z-index: 100;
+  top: -50px;
+  margin-bottom: -50px;
 }
 
-.card .avatar img {
+.media .avatar img {
   width: 100px;
   height: 100px;
+  max-width: 100px;
+  max-height: 100px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  border: 2px #FFF solid;
 }
 
 /* animation definitions */

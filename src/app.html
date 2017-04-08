@@ -1,28 +1,26 @@
-<template>
-  <require from="./nav-bar.html"></require>
-  
-  <nav-bar router.bind="router"></nav-bar>
-
+<template>  
   <div class="page-host">
     <section>
-      <div class="col-lg-3 col-md-3 profile-card">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="media">
-              <div align="center">
-                <img class="thumbnail img-responsive" src="https://avatars3.githubusercontent.com/u/12024925?v=3&s=460">
-              </div>
-              <div class="media-body">
-                <h2>Steven Spann</h2>
-                <p><a href="https://github.com/sspann" target="_blank">sspann</a></p>
-                <hr>
-                <h3>Location</h3>
-                <p>Bryan, Texas</p>
-                <hr>
-                <h3>Birthday</h3>
-                <p>August 16, 1992</p>
-              </div>
+      <div class="col-lg-4 col-md-4">
+        <div class="card media">
+          <div class="cardheader"></div>
+          <div class="avatar" align="center">
+            <img src="https://avatars3.githubusercontent.com/u/12024925?v=3&s=460">
+          </div>
+          <div class="media-body">
+            <div class="info">
+              <h2>Steven Spann</h2>
+              <div class="desc">Research and Development Software Developer</div>
+              <div class="desc"><a href="http://www.jbknowledge.com" target="_blank">JBKnowledge, Inc.</a></div>
+              <div class="desc">Bryan, Texas</div>
             </div>
+            <hr>
+            <ul class="social">
+              <li><a href="#" class="facebook" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+              <li><a href="#" class="twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+              <li><a href="#" class="linkedin" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+              <li><a href="https://github.com/sspann" class="github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a></li>
+            </ul>
           </div>
         </div>
       </div>
