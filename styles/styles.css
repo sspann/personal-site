@@ -13,6 +13,11 @@ body {
   color: #ECF0F1 !important;
 }
 
+.nav-tabs > li > a {
+  background-color: transparent !important;
+  color: #ECF0F1 !important;
+}
+
 .splash {
   text-align: center;
   margin: 10% 0 0 0;
