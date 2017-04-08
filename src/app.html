@@ -1,0 +1,32 @@
+<template>
+  <require from="./nav-bar.html"></require>
+  
+  <nav-bar router.bind="router"></nav-bar>
+
+  <div class="page-host">
+    <section>
+      <div class="col-lg-3 col-md-3 profile-card">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="media">
+              <div align="center">
+                <img class="thumbnail img-responsive" src="https://avatars3.githubusercontent.com/u/12024925?v=3&s=460">
+              </div>
+              <div class="media-body">
+                <h2>Steven Spann</h2>
+                <p><a href="https://github.com/sspann" target="_blank">sspann</a></p>
+                <hr>
+                <h3>Location</h3>
+                <p>Bryan, Texas</p>
+                <hr>
+                <h3>Birthday</h3>
+                <p>August 16, 1992</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <router-view></router-view>
+  </div>
+</template>

@@ -1,8 +1,8 @@
 # `personal-site`
 
-My personal-site built with Aurelia. The purpose of the site is consolidate all of my personal information, social media accounts, resume, etc.
+My `personal-site` built with Aurelia. The purpose of the site is consolidate all of my personal information, social media accounts, resume, etc.
 
-## Getting started
+## Running
 
 Before you start, make sure you have a recent version of [NodeJS](http://nodejs.org/) environment *>=4.0* with NPM 3.
 
@@ -22,7 +22,7 @@ npm start
 ```
 
 This command starts the webpack development server that serves the build bundles.
-You can now browse the the site at http://localhost:9000. Changes in the code
+You can now browse the website at http://localhost:9000. Changes in the code
 will automatically build and reload the app.
 
 ## Contributors
